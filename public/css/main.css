@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e6f7f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+button {
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+#toaster {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #e09f9f;
+  padding: 18px;
+  border-radius: 10px;
+  background-color: #f8c598;
+  display: none;
+  font-weight: bold;
+}
+
+#toaster button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: 1px solid #e09f9f;
+  color: rgba(0, 0, 0, 0.596);
+  background-color: #e09f9f;
+  border-radius: 40%;
+}

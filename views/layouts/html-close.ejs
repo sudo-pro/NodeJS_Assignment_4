@@ -1,0 +1,25 @@
+        <% if (message && message != null) { %>
+            <div id="toaster">
+                <p><%= message %></p>
+                <button onclick="closeToast()">X</button>
+            </div>
+            <script>
+                function showToast() {
+                    document.getElementById('toaster').style.display = 'block';
+                    setTimeout(closeToast, 3000);
+                }
+                function closeToast() {
+                    document.getElementById('toaster').style.display = 'none';
+                }
+                window.onload = showToast;
+            </script>
+        <% } %>
+        <script type="text/javascript">
+            var uri = window.location.toString();
+            if (uri.indexOf("?") > 0) {
+                var clean_uri = uri.substring(0, uri.indexOf("?"));
+                window.history.replaceState({}, document.title, clean_uri);
+            }
+        </script>
+    </body>
+</html>

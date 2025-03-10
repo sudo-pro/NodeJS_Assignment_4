@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="author" content="Jagadish Sau" />
+    <meta name="keywords" content="NodeJS, ExpressJS" />
+    <meta name="description" content="Promact Internship 2025" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/container.css" />
+    <% if (styles && styles.length > 0) { %>
+      <% styles.forEach(function(style) { %>
+        <link rel="stylesheet" href="<%= style %>" />
+      <% }); %>
+    <% } %>
+  </head>
+  <body>

@@ -1,0 +1,10 @@
+<%-include('layouts/html-open.ejs')%>
+    <%- include('layouts/container-open.ejs') %>
+    <form action="/update/<%= user.id %>" method="POST" class="user-form">
+      <input type="text" name="firstName" value="<%= user.firstName %>" placeholder="Enter your first name" autocomplete="off"  maxlength="15" required>
+      <input type="text" name="lastName" value="<%= user.lastName %>" placeholder="Enter your last name" autocomplete="off"  maxlength="15" required>
+      <input type="text" name="userName" value="<%= user.userName %>" placeholder="Enter your username" autocomplete="off"  maxlength="10" required>
+      <button type="submit">Update User</button>
+    </form>
+    <%- include('layouts/container-close.ejs') %>
+<%-include('layouts/html-close.ejs')%>

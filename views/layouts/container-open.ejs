@@ -1,0 +1,24 @@
+<div class="container">
+  <div
+    class="top-bar"
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+      <div class="action-btns">
+        <a
+          href="/"
+          class="<%= (path === '/') ? 'logo-btns-active' : 'logo-btns-inactive' %>"
+          ><img src="/favicon.ico" width="25"  height="25" alt="J"></a
+        >
+        <a
+          href="/create"
+          class="<%= (path === '/create') ? 'action-btns-active' : 'action-btns-inactive' %>"
+          >Add user</a
+        >
+        <a
+          href="/users"
+          class="<%= (path === '/users') ? 'action-btns-active' : 'action-btns-inactive' %>"
+          >View users</a
+        >
+    </div>
+  </div>
+  <div class="user-data">

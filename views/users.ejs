@@ -1,0 +1,42 @@
+<%-include('layouts/html-open.ejs')%>
+  <%- include('layouts/container-open.ejs') %>
+    <% if (users.length === 0) { %>
+      <p style="text-align: center; font-weight: bold;">No users found!</p>
+    <% } else { %>
+      <table class="data">
+        <tr>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+        <% users.forEach(user => { %>
+          <tr id="user-<%= user.id %>">
+            <td>
+              <img class="data-user-profile" src="<%= user.profilePicture%>" alt="img" width="30" height="30" >
+              <%= user.firstName + " " + user.lastName %><span class="data-username"> @<%= user.userName %></span></td>
+            <td>
+              <a class="data-edit" href="/edit/<%=user.id%>">Edit</a>
+              <button type="button" class="data-delete" onclick="deleteUser('<%= user.id %>')">Delete</button>
+              <a class="data-friend" href="/user/<%=user.id%>">Grow Up</a>
+            </td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+    <script>
+      async function deleteUser(userId) {
+        try {
+          const response = await fetch(`/delete/${userId}`, { method: 'DELETE' });
+          if(response.ok) {
+            const userRow = document.getElementById(`user-${userId}`);
+            if (userRow) {
+              userRow.remove();
+            }
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+    </script>
+  <%- include('layouts/container-close.ejs') %>
+<%-include('layouts/html-close.ejs')%>
+      

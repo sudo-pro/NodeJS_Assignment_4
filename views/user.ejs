@@ -1,0 +1,58 @@
+<%-include('layouts/html-open.ejs')%>
+    <%- include('layouts/container-open.ejs') %>
+    <span >You are dummy logged as
+        <span style="color: rgb(97, 14, 136); font-weight: bold;"><%= user.firstName + " "+ user.lastName %></span>
+    </span>
+    <div class="friends-zone">
+        <div class="user-profile">
+            <img class="user-profile-picture" src="<%= user.profilePicture %>" alt="img">
+            <div class="user-profile-name"><%= user.firstName + " " + user.lastName %></div>
+            <div class="user-profile-username">@<%= user.userName %></div>
+        </div>
+        <div class="friend-list">
+        <% if (users && users.length == 0) { %>
+            <p style="text-align: center; font-weight: bold;">No users found!</p>
+            <% } else { %>
+            <% users && users.forEach(u => { %>
+                <div class="friend-profile" id="friend-<%= u.id %>">
+                    <img class="friend-profile-picture" src="<%= u.profilePicture %>" alt="img">
+                    <div class="friend-profile-name"><%= u.firstName + " " + u.lastName %></div>
+                    <div class="friend-profile-username">@<%= u.userName %></div>
+                    <button
+                    class="<%= u.isFriend ? 'friend-profile-remove' : 'friend-profile-add' %>"
+                    onclick="handleFriendship('<%= user.id %>', '<%= u.id %>', <%= u.isFriend %>)"
+                    ><%= u.isFriend ? 'Unfollow' : 'Follow' %></button>
+                </div>
+            <% }); %>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        async function handleFriendship(userId, friendId, isFriend) {
+            try {
+                const response = await fetch(`/user/${userId}/friend/${friendId}`, { 
+                    method: isFriend ? 'DELETE' : 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+                if(response.ok) {
+                    const button = document.querySelector(`#friend-${friendId} button`);
+                    if (button.classList.contains('friend-profile-add')) {
+                        button.classList.remove('friend-profile-add');
+                        button.classList.add('friend-profile-remove');
+                        button.textContent = 'Unfollow';
+                    } else {
+                        button.classList.remove('friend-profile-remove');
+                        button.classList.add('friend-profile-add');
+                        button.textContent = 'Follow';
+                    }
+                }
+            } catch (error) {
+                location.reload();
+            }
+        }
+    </script>
+    <%- include('layouts/container-close.ejs') %>
+<%-include('layouts/html-close.ejs')%>
+<%-include('layouts/html-close.ejs')%>
